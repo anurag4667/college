@@ -58,41 +58,18 @@ int moddiv(int a,int b,int m = mod){
 }
 
 
-int solve(vector<vector<int>> grid){
-if(grid.size() == 2) return grid[0][0]*grid[1][1] - grid[0][1]*grid[1][0];
-
-int n = grid.size();
-int ans = 0;
-int h = 1;
-for(int i = 0; i < n; i++){
-    vector<vector<int>> temp;
-    for(int j = 1; j < n; j++){
-        vector<int> temp1;
-        for(int k = 0; k < n; k++){
-            if(k != i){
-                temp1.push_back(grid[j][k]);
-            }
-        }
-        temp.push_back(temp1);
-    }
-
-    ans = ans + h*grid[0][i]*solve(temp);
-    h = -h;
-}
-
-return ans;
-
-}
 
 void solve(){
-    int n;
-    cin >> n;
-    vector<vector<int>> grid(n,vector<int> (n));
+    string str;
+    cin >> str;
 
-    for(int i = 0; i < n; i++) ip(grid[i]);
+    map<char,int> ch;
 
+    for(auto i : str) ch[i]++;
 
-    cout << solve(grid) << endl;
+    for(auto i : ch){
+        cout << i.first << ": " << i.second << endl;
+    }
 
 }
 signed main(){
